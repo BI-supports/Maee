@@ -1,0 +1,682 @@
+/* ===== Font Face ===== */
+@font-face {
+    font-family: 'IBM Plex Sans Arabic';
+    src: url('./IBMPlexSansArabic-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ===== Base ===== */
+.container h1 {
+    text-align: center;
+    margin-right: 30px; /* إزاحة للجهة اليسار */
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 28px;
+}
+
+body {
+    font-family: 'IBM Plex Sans Arabic', Arial, sans-serif;
+    font-weight: 500;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    direction: rtl; 
+    text-align: right;
+    overflow-x: hidden;
+}
+
+/* ===== Sidebar ===== */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    backdrop-filter: blur(2px);
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100vh;
+    background: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    transition: right 0.3s ease;
+    padding: 20px 0;
+}
+
+.sidebar.active {
+    right: 0;
+}
+
+.sidebar-overlay.active {
+    display: block;
+}
+
+.sidebar-header {
+    padding: 0 20px 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-header h3 {
+    margin: 0;
+    color: #0056b3;
+    font-size: 1.4em;
+}
+
+.close-sidebar-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.close-sidebar-btn:hover {
+    color: #333;
+}
+
+.sidebar-content {
+    padding: 20px;
+}
+
+.sidebar-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #f8f9fa;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: right;
+}
+
+.sidebar-btn:hover {
+    background: #e9ecef;
+    transform: translateX(-5px);
+}
+
+.sidebar-btn .btn-icon {
+    margin-left: 10px;
+    font-size: 1.2em;
+}
+
+.toggle-sidebar-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 997;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-sidebar-btn:hover {
+    background: #004494;
+    transform: scale(1.05);
+}
+
+.container {
+    width: 90%;
+    max-width: 1400px; 
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #0056b3;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* ===== Counters ===== */
+.counters {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.counter-box {
+    background-color: #e9ecef;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    width: 22%; 
+}
+
+.counter-box h3 {
+    margin-top: 0;
+    color: #495057;
+}
+
+.counter-box p {
+    font-size: 2em;
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* ===== Buttons ===== */
+.add-new-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+    display: inline-block; 
+    width: 200px;
+    text-align: center;
+}
+
+.add-new-btn:hover {
+    background-color: #0056b3;
+}
+
+.export-db-btn {
+    background-color: #f0ad4e; 
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+    width: 250px;
+    text-align: center;
+    margin-right: 10px;
+    display: inline-block; 
+}
+
+.export-db-btn:hover {
+    background-color: #ec971f;
+}
+
+.export-csv-btn-style {
+    background-color: #28a745; 
+    width: 220px;
+}
+
+.export-csv-btn-style:hover {
+    background-color: #218838;
+}
+
+/* ===== Table ===== */
+#problems-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#problems-table th, #problems-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: right;
+}
+
+#problems-table th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+/* ===== Status Buttons ===== */
+.status-button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.status-button.new {
+    background-color: #38c172; 
+    color: white;
+}
+
+.status-button.in-progress {
+    background-color: #ffc107; 
+    color: #333;
+}
+
+.status-button.completed {
+    background-color: #17a2b8; 
+    color: white;
+}
+
+/* ===== Delete Button ===== */
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+    padding: 4px 6px; /* slightly smaller padding */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95em; /* smaller icon/text size */
+    line-height: 1;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+/* ===== WhatsApp Link ===== */
+.whatsapp-link {
+    display: inline-flex; 
+    align-items: center;
+    text-decoration: none;
+    color: #333; 
+    font-weight: bold;
+}
+
+.whatsapp-icon {
+    font-size: 1.2em; 
+    color: #25D366; 
+    margin-right: 5px; 
+    transition: transform 0.2s;
+}
+
+.whatsapp-link:hover .whatsapp-icon {
+    transform: scale(1.1); 
+    color: #128C7E;
+}
+
+/* ===== Modal ===== */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 100; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.6); 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+    max-width: 600px; 
+    border-radius: 8px;
+    position: relative; 
+}
+
+.close-btn {
+    color: #aaa;
+    float: left; 
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content input[type="text"], 
+.modal-content select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.modal-content button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.modal-content button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+.close-btn-form {
+    background-color: #6c757d !important;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.close-btn-form:hover {
+    background-color: #5a6268 !important;
+}
+
+/* ===== Pagination ===== */
+.pagination-controls {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.pagination-controls button {
+    padding: 8px 15px;
+    margin: 0 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.pagination-controls button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.pagination-controls #page-info {
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+/* ===== Notifications ===== */
+.notifications-wrapper {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 997;
+}
+
+.notifications-btn {
+    background: #ffffff;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notifications-btn:hover {
+    transform: scale(1.05);
+}
+
+.notifications-icon {
+    font-size: 1.5em;
+}
+
+.notifications-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #dc3545;
+    color: white;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.notifications-count.has-notifications {
+    background: #dc3545;
+    display: flex;
+}
+
+.notifications-count.no-notifications {
+    background: #6c757d;
+    display: flex;
+}
+
+.notifications-panel {
+    position: absolute;
+    top: 55px;
+    left: 0;
+    width: 300px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    display: none;
+    overflow: hidden;
+}
+
+.notifications-panel.active {
+    display: block;
+    animation: slideIn 0.3s ease;
+}
+
+.notifications-header {
+    padding: 15px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notifications-header h3 {
+    margin: 0;
+    color: #495057;
+    font-size: 1.1em;
+}
+
+.close-notifications-btn {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+.close-notifications-btn:hover {
+    color: #495057;
+}
+
+.notifications-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.notification-item {
+    padding: 15px;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.notification-item:hover {
+    background-color: #f8f9fa;
+}
+
+.notification-icon {
+    margin-left: 12px;
+    font-size: 1.2em;
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-title {
+    font-weight: bold;
+    color: #dc3545;
+    margin-bottom: 5px;
+}
+
+.notification-desc {
+    color: #6c757d;
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== Toast Notifications ===== */
+#toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 200; 
+}
+
+.toast {
+    background-color: #333;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transform: translateX(100%);
+    min-width: 250px;
+    text-align: right;
+    direction: rtl;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.toast.success {
+    background-color: #28a745; 
+}
+
+.toast.error {
+    background-color: #dc3545; 
+}
+
+.toast.info {
+    background-color: #007bff; 
+}
+
+/* ===== Popup Notification ===== */
+.popup-overlay {
+    display: none;  /* This will be the initial state */
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2px);
+}
+
+.popup-overlay.show {
+    display: flex;  /* Will be shown when .show class is added */
+}
+
+.popup-box {
+    background: #fff;
+    border-radius: 18px;
+    padding: 25px 30px;
+    width: 360px;
+    max-width: 90%;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    animation: popupFade 0.3s ease;
+}
+
+.popup-box h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.popup-box .delete-message {
+    color: #dc3545;
+    font-size: 16px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.popup-actions {
+    display: flex;
+    justify-content: space-around;
+}
+
+.popup-actions .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.btn-yes {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-no {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-yes:hover {
+    background-color: #218838;
+}
+
+.btn-no:hover {
+    background-color: #c82333;
+}
+
+@keyframes popupFade {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
