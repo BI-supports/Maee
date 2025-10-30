@@ -7,174 +7,162 @@
 </head>
 <body>
 
-<!-- Sidebar -->
-<div id="sidebar-overlay" class="sidebar-overlay"></div>
-<div id="sidebar" class="sidebar">
-    <div class="sidebar-header">
-        <h3>القائمة</h3>
-        <button id="close-sidebar" class="close-sidebar-btn">&times;</button>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h3>القائمة</h3>
+            <button id="close-sidebar" class="close-sidebar-btn">&times;</button>
+        </div>
+        <div class="sidebar-content">
+            <button id="open-modal-btn" class="sidebar-btn">
+                <span class="btn-icon">➕</span>
+                إضافة مشكلة جديدة
+            </button>
+            <button id="export-csv-btn" class="sidebar-btn">
+                <span class="btn-icon">📊</span>
+                تصدير تقرير المشكلات
+            </button>
+            <button id="import-excel-btn" class="sidebar-btn">
+                <span class="btn-icon">📥</span>
+                استيراد المشكلات
+            </button>
+            <button id="export-sqlite-btn" class="sidebar-btn">
+                <span class="btn-icon">💾</span>
+                نسخة احتياطية
+            </button>
+            <input type="file" id="import-excel-input" accept=".xlsx,.xls,.csv" style="display:none" />
+        </div>
     </div>
-    <div class="sidebar-content">
-        <button id="open-modal-btn" class="sidebar-btn">
-            <span class="btn-icon">➕</span>
-            إضافة مشكلة جديدة
+
+    <button id="toggle-sidebar" class="toggle-sidebar-btn">☰</button>
+
+    <div class="notifications-wrapper">
+        <button id="notifications-btn" class="notifications-btn">
+            <span class="notifications-icon">🔔</span>
+            <span id="notifications-count" class="notifications-count"></span>
         </button>
-        <button id="export-csv-btn" class="sidebar-btn">
-            <span class="btn-icon">📊</span>
-            تصدير تقرير المشكلات
-        </button>
-        <button id="import-excel-btn" class="sidebar-btn">
-            <span class="btn-icon">📥</span>
-            استيراد المشكلات
-        </button>
-        <button id="export-sqlite-btn" class="sidebar-btn">
-            <span class="btn-icon">💾</span>
-            نسخة احتياطية
-        </button>
-        <input type="file" id="import-excel-input" accept=".xlsx,.xls,.csv" style="display:none" />
-    </div>
-</div>
-
-<!-- Toggle Sidebar Button -->
-<button id="toggle-sidebar" class="toggle-sidebar-btn">☰</button>
-
-<!-- Notifications Button -->
-<div class="notifications-wrapper">
-    <button id="notifications-btn" class="notifications-btn">
-        <span class="notifications-icon">🔔</span>
-        <span id="notifications-count" class="notifications-count"></span>
-    </button>
-    <div id="notifications-panel" class="notifications-panel">
-        <div class="notifications-header">
-            <h3>الإشعارات</h3>
-            <button id="close-notifications" class="close-notifications-btn">&times;</button>
-        </div>
-        <div id="notifications-list" class="notifications-list">
-            <!-- Notifications will be inserted here -->
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="title-wrapper">
-    <img src="logo.png" class="page-logo" alt="Logo">
-    <h1>نظام تتبع المشكلات</h1>
-    <!-- العدادات -->
-    <div class="counters">
-        <div class="counter-box">
-            <h3>إجمالي المشكلات</h3>
-            <p id="total-count">0</p>
-        </div>
-        <div class="counter-box">
-            <h3>جديد</h3>
-            <p id="new-count">0</p>
-        </div>
-        <div class="counter-box">
-            <h3>جاري حل المشكلة</h3>
-            <p id="in-progress-count">0</p>
-        </div>
-        <div class="counter-box">
-            <h3>مكتملة</h3>
-            <p id="completed-count">0</p>
-        </div>
-    </div>
-
-    <hr>
-
-    <!-- جدول المشكلات -->
-    <h2>قائمة المشكلات</h2>
-    <table id="problems-table">
-        <thead>
-            <tr>
-                <th>رقم المشكلة</th>
-                <th>الجهة</th>
-                <th>المشكلة</th>
-                <th>تاريخ الإضافة</th>
-                <th>تاريخ الإكمال</th>
-                <th>أيام الحل</th>
-                <th>المستفيد</th>
-                <th>الهاتف</th>
-                <th>الحالة</th>
-                <th>إجراء</th>
-                <th>حذف</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-
-    <!-- Pagination -->
-    <div class="pagination-controls">
-        <button id="prev-page-btn" disabled>السابق</button>
-        <span id="page-info">الصفحة 1 من 1</span>
-        <button id="next-page-btn" disabled>التالي</button>
-    </div>
-</div>
-
-<!-- Modal إضافة/تعديل مشكلة -->
-<div id="problem-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h2>إضافة مشكلة جديدة</h2>
-        <form id="problem-form">
-            <div id="problem-number-container" style="display:none">
-                <label for="problem-number">رقم المشكلة:</label>
-                <input type="text" id="problem-number" placeholder="مثال: P-0001" readonly>
+        <div id="notifications-panel" class="notifications-panel">
+            <div class="notifications-header">
+                <h3>الإشعارات</h3>
+                <button id="close-notifications" class="close-notifications-btn">&times;</button>
             </div>
-
-            <label for="entity-name">اسم الجهة:</label>
-            <input type="text" id="entity-name" required>
-
-            <label for="problem-description">المشكلة (الوصف):</label>
-            <input type="text" id="problem-description" required>
-
-            <label for="reporter-name">اسم المستفيد:</label>
-            <input type="text" id="reporter-name" required>
-
-            <label for="reporter-phone">رقم الهاتف:</label>
-            <input type="text" id="reporter-phone" required>
-
-            <label for="problem-status">حالة المشكلة:</label>
-            <select id="problem-status" required>
-                <option value="جديد">جديد</option>
-                <option value="جاري حل المشكلة">جاري حل المشكلة</option>
-                <option value="مكتملة">مكتملة</option>
-            </select>
-
-            <button type="submit">إضافة وحفظ المشكلة</button>
-            <button type="button" id="close-form-btn" class="close-btn-form">إلغاء</button>
-        </form>
+            <div id="notifications-list" class="notifications-list">
+                </div>
+        </div>
     </div>
-</div>
 
-<!-- Toast Notifications -->
-<div id="toast-container"></div>
+    <div class="container">
+        <div class="sticky-header">
+            <div class="title-wrapper">
+                <img src="logo.png" class="page-logo" alt="Logo">
+                <h1>نظام تتبع المشكلات</h1>
 
-<!-- نافذة تأكيد إشعار -->
-<div id="notify-popup" class="popup-overlay">
-  <div class="popup-box">
-    <h3 id="notify-text">هل تريد إشعار المستفيد بأنه تم حل المشكلة؟</h3>
-    <div class="popup-actions">
-      <button id="confirm-yes" class="btn btn-yes">نعم، أرسل إشعار</button>
-      <button id="confirm-no" class="btn btn-no">لا، فقط أكمل الحالة</button>
+                <div class="counters">
+                    <div class="counter-box">
+                        <h3>إجمالي المشكلات</h3>
+                        <p id="total-count">0</p>
+                    </div>
+                    <div class="counter-box">
+                        <h3>جديد</h3>
+                        <p id="new-count">0</p>
+                    </div>
+                    <div class="counter-box">
+                        <h3>جاري حل المشكلة</h3>
+                        <p id="in-progress-count">0</p>
+                    </div>
+                    <div class="counter-box">
+                        <h3>مكتملة</h3>
+                        <p id="completed-count">0</p>
+                    </div>
+                </div>
+            </div> <hr>
+        </div> <h2>قائمة المشكلات</h2>
+        <table id="problems-table">
+            <thead>
+                <tr>
+                    <th>رقم المشكلة</th>
+                    <th>الجهة</th>
+                    <th>المشكلة</th>
+                    <th>تاريخ الإضافة</th>
+                    <th>تاريخ الإكمال</th>
+                    <th>أيام الحل</th>
+                    <th>المستفيد</th>
+                    <th>الهاتف</th>
+                    <th>الحالة</th>
+                    <th>إجراء</th>
+                    <th>حذف</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <div class="pagination-controls">
+            <button id="prev-page-btn" disabled>السابق</button>
+            <span id="page-info">الصفحة 1 من 1</span>
+            <button id="next-page-btn" disabled>التالي</button>
+        </div>
     </div>
-  </div>
-</div>
 
-<!-- نافذة تأكيد الحذف -->
-<div id="delete-popup" class="popup-overlay">
-  <div class="popup-box">
-    <h3>تأكيد الحذف</h3>
-    <p class="delete-message">هل أنت متأكد من حذف هذه المشكلة؟</p>
-    <div class="popup-actions">
-      <button id="delete-confirm" class="btn btn-yes">نعم، احذف</button>
-      <button id="delete-cancel" class="btn btn-no">إلغاء</button>
+    <div id="problem-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>إضافة مشكلة جديدة</h2>
+            <form id="problem-form">
+                <div id="problem-number-container" style="display:none">
+                    <label for="problem-number">رقم المشكلة:</label>
+                    <input type="text" id="problem-number" placeholder="مثال: P-0001" readonly>
+                </div>
+
+                <label for="entity-name">اسم الجهة:</label>
+                <input type="text" id="entity-name" required>
+
+                <label for="problem-description">المشكلة (الوصف):</label>
+                <input type="text" id="problem-description" required>
+
+                <label for="reporter-name">اسم المستفيد:</label>
+                <input type="text" id="reporter-name" required>
+
+                <label for="reporter-phone">رقم الهاتف:</label>
+                <input type="text" id="reporter-phone" required>
+
+                <label for="problem-status">حالة المشكلة:</label>
+                <select id="problem-status" required>
+                    <option value="جديد">جديد</option>
+                    <option value="جاري حل المشكلة">جاري حل المشكلة</option>
+                    <option value="مكتملة">مكتملة</option>
+                </select>
+
+                <button type="submit">إضافة وحفظ المشكلة</button>
+                <button type="button" id="close-form-btn" class="close-btn-form">إلغاء</button>
+            </form>
+        </div>
     </div>
-  </div>
-</div>
 
-<!-- SheetJS (XLSX) for import/export of Excel files -->
-<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-<script src="./sqljs/sql-wasm.js"></script>
-<script src="script.js"></script>
+    <div id="toast-container"></div>
+
+    <div id="notify-popup" class="popup-overlay">
+        <div class="popup-box">
+            <h3 id="notify-text">هل تريد إشعار المستفيد بأنه تم حل المشكلة؟</h3>
+            <div class="popup-actions">
+                <button id="confirm-yes" class="btn btn-yes">نعم، أرسل إشعار</button>
+                <button id="confirm-no" class="btn btn-no">لا، فقط أكمل الحالة</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="delete-popup" class="popup-overlay">
+        <div class="popup-box">
+            <h3>تأكيد الحذف</h3>
+            <p class="delete-message">هل أنت متأكد من حذف هذه المشكلة؟</p>
+            <div class="popup-actions">
+                <button id="delete-confirm" class="btn btn-yes">نعم، احذف</button>
+                <button id="delete-cancel" class="btn btn-no">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="./sqljs/sql-wasm.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
-
