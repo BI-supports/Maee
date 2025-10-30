@@ -680,3 +680,7 @@ h1, h2 {
     from { transform: scale(0.9); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
+.page-logo {
+    width: 20%;   /* عرض الصورة */
+    height: auto;  /* المحافظة على تناسب الأبعاد */
+}
