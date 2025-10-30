@@ -28,6 +28,17 @@ body {
     overflow-x: hidden;
 }
 
+/* ===== Sticky Header Style (الرأس الثابت) ===== */
+.sticky-header {
+    position: sticky; 
+    top: 0; /* يلتصق بأعلى الشاشة */
+    z-index: 10; /* يضمن بقاءه فوق محتوى الجدول أثناء التمرير */
+    background-color: #fff; /* مهم: إضافة خلفية بيضاء لتغطية المحتوى الذي يمر من أسفله */
+    padding-top: 20px; /* للحفاظ على المسافة العلوية داخل الكونتينر */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* ظل خفيف لإبرازه */
+}
+/* ================================================= */
+
 /* ===== Sidebar ===== */
 .sidebar-overlay {
     display: none;
@@ -605,7 +616,7 @@ h1, h2 {
 
 /* ===== Popup Notification ===== */
 .popup-overlay {
-    display: none;  /* This will be the initial state */
+    display: none; 
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.45);
@@ -616,7 +627,7 @@ h1, h2 {
 }
 
 .popup-overlay.show {
-    display: flex;  /* Will be shown when .show class is added */
+    display: flex; 
 }
 
 .popup-box {
@@ -680,8 +691,8 @@ h1, h2 {
     from { transform: scale(0.9); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
-.page-logo {
-    width: 20%;   /* عرض الصورة */
-    height: auto;  /* المحافظة على تناسب الأبعاد */
-}
 
+.page-logo {
+    width: 20%; 
+    height: auto; 
+}
